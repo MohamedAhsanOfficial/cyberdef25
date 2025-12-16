@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: malware-detector
+  labels:
+    app: malware-detector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: malware-detector
+  template:
+    metadata:
+      labels:
+        app: malware-detector
+    spec:
+      initContainers:
+        - name: prepare-storage
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - mkdir -p /workspace/logs /workspace/output && chmod 755 /workspace
+          volumeMounts:
+            - name: logs-storage
+              mountPath: /workspace
+      containers:
+        - name: inference
+          image: docker.io/mohamedahsan00/collage-erp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: logs-storage
+              mountPath: /input/logs
+              subPath: logs
+            - name: logs-storage
+              mountPath: /output
+              subPath: output
+      volumes:
+        - name: logs-storage
+          persistentVolumeClaim:
+            claimName: malware-logs-pvc

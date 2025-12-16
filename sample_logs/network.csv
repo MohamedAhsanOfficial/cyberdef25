@@ -1,0 +1,4 @@
+timestamp,src_ip,dest_ip,packet_rate,anomaly_score,urgent_flag,protocol
+2025-12-15T10:00:00Z,10.0.0.1,10.0.0.254,420,75,1,TCP
+2025-12-15T10:00:10Z,10.0.0.2,10.0.0.2,120,10,0,UDP
+2025-12-15T10:00:20Z,10.0.0.3,10.0.0.5,80,45,0,TCP

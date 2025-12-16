@@ -1,0 +1,4 @@
+timestamp,src_ip,dest_ip,protocol,packet_rate,anomaly_score,urgent_flag,alert,threat_score
+2025-12-15T10:00:00Z,10.0.0.1,10.0.0.254,TCP,420,75,1,True,0.9999501411761751
+2025-12-15T10:00:10Z,10.0.0.2,10.0.0.2,UDP,120,10,0,False,0.0016622336368129732
+2025-12-15T10:00:20Z,10.0.0.3,10.0.0.5,TCP,80,45,0,False,0.0015412325969490375
